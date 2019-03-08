@@ -22,11 +22,12 @@ url = "https://jikipedia.com/"
 def t2():
     while 1:
         main()
-        time.sleep(5)
+        time.sleep(3)
 
 
 def main():
     with open("JiKiPedia.json", "w", encoding='utf-8') as f:
+        tm1 = time.time()
         for k in range(100):
             try:
                 res = requests.get(url=url, headers=headers, timeout=10)
@@ -46,6 +47,8 @@ def main():
                     f.write(json.dumps(obj, indent=2, ensure_ascii=False) + ",\n")
             except:
                 continue
+        tm2 = time.time()
+        print('当前线程任务耗时：' + str(tm2 - tm1))
 
 
 if __name__ == '__main__':
